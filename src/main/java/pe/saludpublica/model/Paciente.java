@@ -11,7 +11,7 @@ public class Paciente {
     public Paciente(String documento, String nombres, String apellidos, String telefono, String correo) {
         this.documento = validarObligatorio(documento, "documento");
         this.nombres = validarObligatorio(nombres, "nombres");
-        this.apellidos = apellidos;
+        this.apellidos = validarObligatorio(apellidos, "apellidos");
         this.telefono = telefono;
         this.correo = correo;
     }
