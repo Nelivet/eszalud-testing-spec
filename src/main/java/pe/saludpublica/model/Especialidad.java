@@ -2,13 +2,19 @@ package pe.saludpublica.model;
 
 public class Especialidad {
 
-    private String nombre;
-    private String descripcion;
+    private final String nombre;
+    private final String descripcion;
 
     public Especialidad(String nombre, String descripcion) {
-        if (nombre == null) throw new IllegalArgumentException("El campo nombre es obligatorio");
-        this.nombre = nombre;
+        this.nombre = validarObligatorio(nombre, "nombre");
         this.descripcion = descripcion;
+    }
+
+    private static <T> T validarObligatorio(T valor, String campo) {
+        if (valor == null) {
+            throw new IllegalArgumentException("El campo " + campo + " es obligatorio");
+        }
+        return valor;
     }
 
     public String getNombre() {
