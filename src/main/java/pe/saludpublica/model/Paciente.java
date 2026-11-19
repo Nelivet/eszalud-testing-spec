@@ -9,14 +9,18 @@ public class Paciente {
     private final String correo;
 
     public Paciente(String documento, String nombres, String apellidos, String telefono, String correo) {
-        if (documento == null) {
-            throw new IllegalArgumentException("El campo documento es obligatorio");
-        }
-        this.documento = documento;
+        this.documento = validarObligatorio(documento, "documento");
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.correo = correo;
+    }
+
+    private static <T> T validarObligatorio(T valor, String campo) {
+        if (valor == null) {
+            throw new IllegalArgumentException("El campo " + campo + " es obligatorio");
+        }
+        return valor;
     }
 
     public String getDocumento() {
