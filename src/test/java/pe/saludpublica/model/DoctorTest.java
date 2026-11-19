@@ -56,4 +56,18 @@ class DoctorTest {
             () -> new Doctor("87654321", "Carlos", "Ramírez", null, "esp-001")
         );
     }
+
+    @Test
+    @DisplayName("Verificar los atributos después de construir el doctor")
+    void shouldKeepAttributesAfterCreation() {
+        Doctor doctor = new Doctor("11223344", "María", "Torres", "CMP-67890", "esp-002");
+
+        assertAll(
+            () -> assertEquals("11223344", doctor.getDocumento()),
+            () -> assertEquals("María", doctor.getNombres()),
+            () -> assertEquals("Torres", doctor.getApellidos()),
+            () -> assertEquals("CMP-67890", doctor.getColegiatura()),
+            () -> assertEquals("esp-002", doctor.getEspecialidad())
+        );
+    }
 }
