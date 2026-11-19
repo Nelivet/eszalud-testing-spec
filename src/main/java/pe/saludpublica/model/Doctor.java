@@ -2,22 +2,25 @@ package pe.saludpublica.model;
 
 public class Doctor {
 
-    private String documento;
-    private String nombres;
-    private String apellidos;
-    private String colegiatura;
-    private String especialidad;
+    private final String documento;
+    private final String nombres;
+    private final String apellidos;
+    private final String colegiatura;
+    private final String especialidad;
 
     public Doctor(String documento, String nombres, String apellidos, String colegiatura, String especialidad) {
-        if (colegiatura == null) throw new IllegalArgumentException("El campo colegiatura es obligatorio");
-        if (apellidos == null) throw new IllegalArgumentException("El campo apellidos es obligatorio");
-        if (nombres == null) throw new IllegalArgumentException("El campo nombres es obligatorio");
-        if (documento == null) throw new IllegalArgumentException("El campo documento es obligatorio");
-        this.documento = documento;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.colegiatura = colegiatura;
+        this.documento = validarObligatorio(documento, "documento");
+        this.nombres = validarObligatorio(nombres, "nombres");
+        this.apellidos = validarObligatorio(apellidos, "apellidos");
+        this.colegiatura = validarObligatorio(colegiatura, "colegiatura");
         this.especialidad = especialidad;
+    }
+
+    private static <T> T validarObligatorio(T valor, String campo) {
+        if (valor == null) {
+            throw new IllegalArgumentException("El campo " + campo + " es obligatorio");
+        }
+        return valor;
     }
 
     public String getDocumento() {
