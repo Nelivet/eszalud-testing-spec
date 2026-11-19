@@ -47,4 +47,18 @@ class PacienteTest {
             () -> new Paciente("12345678", "Ana", null, "987654321", "ana@mail.com")
         );
     }
+
+    @Test
+    @DisplayName("Verificar los atributos después de construir el paciente")
+    void shouldKeepAttributesAfterCreation() {
+        Paciente paciente = new Paciente("44556677", "Luis", "Gómez", "912345678", "luis@mail.com");
+
+        assertAll(
+            () -> assertEquals("44556677", paciente.getDocumento()),
+            () -> assertEquals("Luis", paciente.getNombres()),
+            () -> assertEquals("Gómez", paciente.getApellidos()),
+            () -> assertEquals("912345678", paciente.getTelefono()),
+            () -> assertEquals("luis@mail.com", paciente.getCorreo())
+        );
+    }
 }
