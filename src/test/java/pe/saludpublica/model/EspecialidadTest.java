@@ -8,4 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Pruebas del modelo Especialidad")
 class EspecialidadTest {
 
+    @Test
+    @DisplayName("Crear una especialidad con datos válidos")
+    void shouldCreateSpecialtyWithValidData() {
+        Especialidad especialidad = new Especialidad("Cardiología", "Atención de enfermedades del corazón");
+
+        assertNotNull(especialidad);
+        assertEquals("Cardiología", especialidad.getNombre());
+        assertEquals("Atención de enfermedades del corazón", especialidad.getDescripcion());
+    }
 }
