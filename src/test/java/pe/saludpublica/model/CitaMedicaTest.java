@@ -24,4 +24,14 @@ class CitaMedicaTest {
         assertEquals("Control general", cita.getMotivo());
         assertEquals(EstadoCita.PROGRAMADA, cita.getEstado());
     }
+
+    @Test
+    @DisplayName("Rechazar una cita sin identificador de paciente")
+    void shouldRejectAppointmentWithoutPatient() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new CitaMedica(null, "doc-001", "esp-001",
+                    LocalDateTime.of(2026, 12, 1, 10, 30), "Control general", EstadoCita.PROGRAMADA)
+        );
+    }
 }
