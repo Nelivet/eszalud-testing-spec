@@ -34,4 +34,14 @@ class CitaMedicaTest {
                     LocalDateTime.of(2026, 12, 1, 10, 30), "Control general", EstadoCita.PROGRAMADA)
         );
     }
+
+    @Test
+    @DisplayName("Rechazar una cita sin identificador de doctor")
+    void shouldRejectAppointmentWithoutDoctor() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new CitaMedica("pac-001", null, "esp-001",
+                    LocalDateTime.of(2026, 12, 1, 10, 30), "Control general", EstadoCita.PROGRAMADA)
+        );
+    }
 }
