@@ -4,24 +4,27 @@ import java.time.LocalDateTime;
 
 public class CitaMedica {
 
-    private String paciente;
-    private String doctor;
-    private String especialidad;
-    private LocalDateTime fechaHora;
-    private String motivo;
-    private EstadoCita estado;
+    private final String paciente;
+    private final String doctor;
+    private final String especialidad;
+    private final LocalDateTime fechaHora;
+    private final String motivo;
+    private final EstadoCita estado;
 
     public CitaMedica(String paciente, String doctor, String especialidad, LocalDateTime fechaHora, String motivo, EstadoCita estado) {
-        if (fechaHora == null) throw new IllegalArgumentException("El campo fechaHora es obligatorio");
-        if (especialidad == null) throw new IllegalArgumentException("El campo especialidad es obligatorio");
-        if (doctor == null) throw new IllegalArgumentException("El campo doctor es obligatorio");
-        if (paciente == null) throw new IllegalArgumentException("El campo paciente es obligatorio");
-        this.paciente = paciente;
-        this.doctor = doctor;
-        this.especialidad = especialidad;
-        this.fechaHora = fechaHora;
+        this.paciente = validarObligatorio(paciente, "paciente");
+        this.doctor = validarObligatorio(doctor, "doctor");
+        this.especialidad = validarObligatorio(especialidad, "especialidad");
+        this.fechaHora = validarObligatorio(fechaHora, "fechaHora");
         this.motivo = motivo;
         this.estado = (estado == null) ? EstadoCita.PROGRAMADA : estado;
+    }
+
+    private static <T> T validarObligatorio(T valor, String campo) {
+        if (valor == null) {
+            throw new IllegalArgumentException("El campo " + campo + " es obligatorio");
+        }
+        return valor;
     }
 
     public String getPaciente() {
