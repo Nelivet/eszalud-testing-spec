@@ -44,4 +44,14 @@ class CitaMedicaTest {
                     LocalDateTime.of(2026, 12, 1, 10, 30), "Control general", EstadoCita.PROGRAMADA)
         );
     }
+
+    @Test
+    @DisplayName("Rechazar una cita sin identificador de especialidad")
+    void shouldRejectAppointmentWithoutSpecialty() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new CitaMedica("pac-001", "doc-001", null,
+                    LocalDateTime.of(2026, 12, 1, 10, 30), "Control general", EstadoCita.PROGRAMADA)
+        );
+    }
 }
