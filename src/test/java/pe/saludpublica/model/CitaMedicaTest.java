@@ -10,4 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Pruebas del modelo CitaMedica")
 class CitaMedicaTest {
 
+    @Test
+    @DisplayName("Crear una cita médica con datos válidos")
+    void shouldCreateAppointmentWithValidData() {
+        CitaMedica cita = new CitaMedica("pac-001", "doc-001", "esp-001",
+                LocalDateTime.of(2026, 12, 1, 10, 30), "Control general", EstadoCita.PROGRAMADA);
+
+        assertNotNull(cita);
+        assertEquals("pac-001", cita.getPaciente());
+        assertEquals("doc-001", cita.getDoctor());
+        assertEquals("esp-001", cita.getEspecialidad());
+        assertEquals(LocalDateTime.of(2026, 12, 1, 10, 30), cita.getFechaHora());
+        assertEquals("Control general", cita.getMotivo());
+        assertEquals(EstadoCita.PROGRAMADA, cita.getEstado());
+    }
 }
